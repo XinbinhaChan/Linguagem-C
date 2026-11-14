@@ -167,18 +167,23 @@ static char *lerArquivo(const char *caminho) {
 
 /* ===================== Funcoes da impressora ===================== */
 
-void fazerLogin(char *usuario, char *senha) {
+int fazerLogin() {
+    char usuario[50];
+    char senha[50];
     int i=0;
     while (i<3) {
+        capturarEntrada("Login: ", usuario, sizeof(usuario));
+        capturarEntrada("Senha: ", senha, sizeof(senha));
         if (strcmp(usuario, "admin") == 0 && strcmp(senha, "1234") == 0) {
         printf("Login realizado com sucesso.\n");
         return 1;
         }
-     else {
+        else {
         i++;
-    }
-    return 0;
+        printf("Usuario ou senha incorretos. Tentativa %d de 3.\n", i);
+        }
 }
+    return 0;
 }
 
 void exibirMenu(void) {
@@ -281,7 +286,7 @@ void imprimirQRCode(void) {
     else{
         int copias = lerInteiro("Quantas copias? ");
         for (int i = 1; i <= copias; i++) {
-            int retorno = ImpressaoQRCode(ASS_QRCODE);
+            int retorno = ImpressaoQRCode(ASS_QRCODE, 6, 4);
             if (retorno == 0) {
                 printf("Copia %d impressa!\n", i);
             } else {
@@ -346,15 +351,10 @@ int main(void) {
         printf("Programa encerrado.\n");
         return 1;
     }
-
-    char usuario[50];
-    char senha[50];
-    scanf(" %s", usuario);
-    scanf(" %s", senha);
-    if (fazerLogin(usuario, senha) == 1) {
+    if (fazerLogin() == 1) {
         int opcao = -1;
         while (opcao != 0) {
-            exibirMenu();""
+            exibirMenu();
              opcao = lerInteiro("\nDigite a opcao desejada: ");
              scanf(" %d", &opcao);
             switch (opcao) {
@@ -403,7 +403,7 @@ int main(void) {
     }
     }
     else {
-        printf("Login falhou. Encerrando o programa.\n");
+        printf("Login falhou. Programa encerrado.\n");
     }
 
     
