@@ -180,7 +180,7 @@ int fazerLogin() {
         }
         else {
         i++;
-        printf("Usuario ou senha incorretos. Tentativa %d de 3.\n", i);
+        printf("Usuario ou senha incorretos. Tentativa %d de 3.\n", 3 - i);
         }
 }
     return 0;
@@ -259,87 +259,143 @@ void fecharConexao(void) {
 }
 
 void imprimirTexto(void) {
-   if (!conexaoAberta) { /* 1) conexão aberta? */
+   if (!conexaoAberta) {
     printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
-    return; /* não está: avisa e SAI da função */
+    return;
  }
-   char texto[200]; /* 2) só agora pergunta */
+   char texto[200];
     capturarEntrada("Texto a imprimir: ", texto, sizeof(texto));
     int copias = lerInteiro("Quantas copias? ");
-    for (int i = 1; i <= copias; i++) { /* laço: repete a impressão */
-    int retorno = ImpressaoTexto(texto, 1, 4, 0); /* 3) chama o comando */
-    if (retorno == 0) { /* 4) confere o retorno */
+    for (int i = 1; i <= copias; i++) { 
+    int retorno = ImpressaoTexto(texto, 1, 4, 0);
+    if (retorno >= 0) {
         printf("Copia %d impressa!\n", i);
     }else {
          printf("Erro ao imprimir. Codigo: %d\n", retorno);
  }
  }
- Corte(5); /* corta o papel */
+ Corte(5);
 
 }
 
 void imprimirQRCode(void) {
-    if(!conexaoAberta) {
+    if (!conexaoAberta) {
         printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
         return;
     }
-    else{
-        int copias = lerInteiro("Quantas copias? ");
-        for (int i = 1; i <= copias; i++) {
-            int retorno = ImpressaoQRCode(ASS_QRCODE, 6, 4);
-            if (retorno == 0) {
-                printf("Copia %d impressa!\n", i);
-            } else {
-                printf("Erro ao imprimir. Codigo: %d\n", retorno);
-            }
-        }
-        Corte(5);
+    char dados[200];
+    capturarEntrada("Conteudo do QR Code: ", dados, sizeof(dados));
+    if (dados[0] == '\0') {
+        printf("Conteudo vazio. Nada foi impresso.\n");
+        return;
     }
-    
+    int retorno = ImpressaoQRCode(dados, 6, 4);
+
+    if (retorno == 0) {
+        printf("QR Code impresso!\n");
+    } else {
+        printf("Erro ao imprimir QR Code. Codigo: %d\n", retorno);
+    }
+    Corte(5);
 }
 
 void imprimirCodigoBarras(void) {
-    
+    if (!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+    int retorno = ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
+    if (retorno == 0) {
+        printf("Codigo de barras impresso!\n");
+    } else {
+        printf("Erro ao imprimir codigo de barras. Codigo: %d\n", retorno);
+    }
+    Corte(5);
 }
 
 void imprimirXMLSAT(void) {
- if (!conexaoAberta) {
- printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
- return;
- }
- char *dadosXML = lerArquivo("XMLSAT.xml");
- free (dadosXML); 
- if (dadosXML == NULL) { /* arquivo não encontrado */
- printf("Nao foi possivel ler o XMLSAT.xml\n");
- return;
- }
- int retorno = ImprimeXMLSAT(dadosXML, 0);
- Corte(5);
- free(dadosXML); /* devolve a memória */
- if (retorno == 0) {
- printf("XML SAT impresso!\n");
- } else {
- printf("Erro ao imprimir XML SAT. Codigo: %d\n", retorno);
- }
+    if (!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+    char *dadosXML = lerArquivo("XMLSAT.xml");
+    if (dadosXML == NULL) { // arquivo nao encontrado
+        printf("Nao foi possivel ler o XMLSAT.xml\n");
+        return;
+    }
+    int retorno = ImprimeXMLSAT(dadosXML, 0);
+    Corte(5);
+    free(dadosXML);
+    if (retorno == 0) {
+        printf("XML SAT impresso!\n");
+    } else {
+        printf("Erro ao imprimir XML SAT. Codigo: %d\n", retorno);
+    }
 }
 
 void imprimirXMLCancelamentoSAT(void) {
-    	
-    	/* le o arquivo XML (na raiz do projeto) para a memoria */
-        //char *dadosXML = lerArquivo("CANC_SAT.xml");
+        if (!conexaoAberta) {
+            printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+            return;
+        }
+        char *dadosXML = lerArquivo("CANC_SAT.xml");
+        if (dadosXML == NULL) {
+            printf("Nao foi possivel ler o CANC_SAT.xml\n");
+            return;
+        }
+        int retorno = ImprimeXMLCancelamentoSAT(dadosXML, ASS_QRCODE, 0);
+        Corte(5);
+        free(dadosXML);
+        if (retorno == 0) {
+            printf("XML Cancelamento SAT impresso!\n");
+        } else {
+            printf("Erro ao imprimir XML Cancelamento SAT. Codigo: %d\n", retorno);
+        }
         
 }
 
 void abrirGavetaElgin(void) {
-    
+    if (!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+    int retorno = AbreGavetaElgin(1, 50, 50);
+    if (retorno == 0) {
+        printf("Gaveta (Elgin) aberta!\n");
+    } else {
+        printf("Erro ao abrir gaveta (Elgin). Codigo: %d\n", retorno);
+    }
 }
 
 void abrirGaveta(void) {
-    
+    if (!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+    int retorno = AbreGaveta(1, 5, 10);
+    if (retorno == 0) {
+        printf("Gaveta aberta!\n");
+    } else {
+        printf("Erro ao abrir gaveta. Codigo: %d\n", retorno);
+    }
 }
 
 void emitirSinalSonoro(void) {
-    
+    if (!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+    int qtd = lerInteiro("Quantas vezes apitar (1 a 63)? ");
+    if (qtd < 1 || qtd > 63) {
+        printf("Quantidade invalida. Use de 1 a 63.\n");
+        return;
+    }
+    int retorno = SinalSonoro(qtd, 50, 5);
+    if (retorno == 0) {
+        printf("Sinal sonoro emitido!\n");
+    } else {
+        printf("Erro ao emitir sinal sonoro. Codigo: %d\n", retorno);
+    }
 }
 
 
@@ -356,7 +412,6 @@ int main(void) {
         while (opcao != 0) {
             exibirMenu();
              opcao = lerInteiro("\nDigite a opcao desejada: ");
-             scanf(" %d", &opcao);
             switch (opcao) {
                 case 1:
                     configurarConexao();
@@ -392,6 +447,7 @@ int main(void) {
                     emitirSinalSonoro();
                     break;
                 case 0:
+                    fecharConexao();
                     printf("Encerrando o programa.\n");
                     break;
                 default:
