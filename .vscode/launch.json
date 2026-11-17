@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/maxim/Downloads/LinguagemC-20261112T004917Z-1-001/LinguagemC",
-      "program": "c:/Users/maxim/Downloads/LinguagemC-20261112T004917Z-1-001/LinguagemC/build/Release/outRelease",
+      "cwd": "c:/Users/maxim/OneDrive/Documentos/Faculdade/algoritimo_tabalho_grupo",
+      "program": "c:/Users/maxim/OneDrive/Documentos/Faculdade/algoritimo_tabalho_grupo/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
@@ -19,17 +19,6 @@
           "ignoreFailures": true
         }
       ]
-    },
-    {
-      "name": "(Windows) Launch",
-      "type": "cppvsdbg",
-      "request": "launch",
-      "program": "enter program name, for example ${workspaceFolder}/a.exe",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "environment": [],
-      "console": "internalConsole"
     }
   ]
 }

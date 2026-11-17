@@ -266,7 +266,7 @@ void imprimirTexto(void) {
    char texto[200];
     capturarEntrada("Texto a imprimir: ", texto, sizeof(texto));
     int copias = lerInteiro("Quantas copias? ");
-    for (int i = 1; i <= copias; i++) { 
+    for (int i=1; i<=copias; i++) { 
     int retorno = ImpressaoTexto(texto, 1, 4, 0);
     if (retorno >= 0) {
         printf("Copia %d impressa!\n", i);
