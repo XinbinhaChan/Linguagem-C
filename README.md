@@ -1,30 +1,29 @@
-# 🖨️ Integração Java com Impressora Elgin i9
-### *(Coloque aqui o nome do seu projeto)*
+# 🖨️ Integração C com Impressora Elgin i9
+### 
 ---
 
 ## 📘 Sobre o Projeto
 
-Este projeto foi desenvolvido por alunos com o objetivo de criar uma aplicação Java capaz de se comunicar com a impressora **Elgin i9**, utilizando comandos **ESC/POS**, testes de impressão e interação via porta de comunicação.  
-O trabalho faz parte da disciplina de **Programação Orientada a Objetos**.
+Este projeto foi desenvolvido por alunos com o objetivo de criar uma aplicação em C capaz de se comunicar com a impressora **Elgin i9**, testes de impressão e interação via porta de comunicação.  
+O trabalho faz parte da disciplina de **Contrução de Algoritmos e Programação**.
 
 ---
 
 ## 🧰 Tecnologias Utilizadas
 
-- **Java 17**
-- **IntelliJ IDEA**
-- **Biblioteca ESC/POS**
+- **Linguagem C**
+- **VSCode**
+- **Compilador MinGW32 (32 bits)**
 - **Driver/SDK da Elgin i9**
-- *(Opcional)* Maven ou Gradle
 
 ---
 
 ## 📁 Estrutura do Projeto
 
-/src → Código-fonte principal
-/lib → Bibliotecas e dependências externas
-/docs → Materiais adicionais e documentação
-/examples → Testes e arquivos de demonstração
+/.vscode → Configurações para o Compilador
+/Output → Bibliotecas, dependências externas e executável do código
+main.c → Código principal
+README.md → Informações sobre o projeto
 
 
 ---
@@ -43,14 +42,11 @@ O trabalho faz parte da disciplina de **Programação Orientada a Objetos**.
 3. Será criada uma nova pasta com os arquivos.
 
 ### 🧭 3. Importar no IntelliJ IDEA
-1. Abra o **IntelliJ IDEA**.
-2. Clique em **Open**.
-3. Escolha a pasta extraída.
+1. Abra o **VScode**.
+2. Clique em **File**.
+3. Selecione **Open Folder**
 4. Aguarde o carregamento.
-5. Caso apareça, clique em **Import Project** (Maven/Gradle).
-6. Verifique o SDK em:
-   - *File → Project Structure → Project SDK → Java 17*
-7. Abra o arquivo `Main.java` e clique em ▶️ **Run**.
+5. Abra o arquivo `main.c` e clique em ▶️ **Run**.
 
 ---
 
@@ -58,7 +54,6 @@ O trabalho faz parte da disciplina de **Programação Orientada a Objetos**.
 
 - Teste de conexão com a impressora
 - Impressão de texto simples
-- Envio de comandos **ESC/POS**
 - Verificação das portas de comunicação
 - Teste com várias mensagens
 
@@ -68,7 +63,7 @@ O trabalho faz parte da disciplina de **Programação Orientada a Objetos**.
 
 - Manual da Impressora **Elgin i9**
 - Documentação do **SDK Elgin**
-- Referência **ESC/POS**
+- Documentação da biblioteca E1_Impressora01.dll.
 
 ---
 
