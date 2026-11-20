@@ -176,7 +176,7 @@ int fazerLogin() {
         capturarEntrada("Senha: ", senha, sizeof(senha));
         if (strcmp(usuario, "admin") == 0 && strcmp(senha, "1234") == 0) {
         printf("Login realizado com sucesso.\n");
-        return 1;
+        return 1;   
         }
         else {
         i++;
@@ -259,22 +259,37 @@ void fecharConexao(void) {
 }
 
 void imprimirTexto(void) {
-   if (!conexaoAberta) {
-    printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
-    return;
- }
-   char texto[200];
+
+if (!conexaoAberta) {
+
+ printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+
+ return;
+
+}
+
+    char texto[200];
+
     capturarEntrada("Texto a imprimir: ", texto, sizeof(texto));
+
     int copias = lerInteiro("Quantas copias? ");
+
     for (int i=1; i<=copias; i++) { 
-    int retorno = ImpressaoTexto(texto, 1, 4, 0);
-    if (retorno >= 0) {
-        printf("Copia %d impressa!\n", i);
-    }else {
-         printf("Erro ao imprimir. Codigo: %d\n", retorno);
- }
- }
- Corte(5);
+
+        int retorno = ImpressaoTexto(texto, 1, 4, 0);
+
+        if (retorno >= 0) {
+
+            printf("Copia %d impressa!\n", i);
+
+        }else {
+
+             printf("Erro ao imprimir. Codigo: %d\n", retorno);
+
+}
+
+}
+    Corte(5);
 
 }
 
