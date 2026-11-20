@@ -75,6 +75,6 @@ O trabalho faz parte da disciplina de **Programação Orientada a Objetos**.
 ## 👥 Autores  
 *(em ordem alfabética)*
 
-- Ana Beatriz Souza
-- Carlos Henrique Pereira
-- Marcos Vinicius Almeida
+- Matheus Maximiano Prado da Silva
+- Matheus Navarro Wenceslau
+- Yago Vidal Oliveira de Almeida
